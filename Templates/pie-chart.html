@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+	
+  <title>Restaurant Review Analysis</title>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+			{% for key, value in data.items() %}
+				{% if value is string %}
+					['{{ key }}', '{{ value }}'],
+				{% else %}
+					['{{ key }}', {{ value }}],
+				{% endif %}
+			{% endfor %}
+        ]);
+
+        var options = {
+          title: 'Restaurant Reviews',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Restaurant Review Analysis</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/google-charts/pie-chart">Charts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/google-charts/bar-chart">Top 10</a>
+          </li>
+
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Restaurant List
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
+              <li class="nav-item">
+                <a class="nav-link" href="/google-charts/Kawartha Dairy">Kawartha Dairy</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/google-charts/The Parlour">The Parlour</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/google-charts/Swirleez Frozen Yogurt">Swirleez Frozen Yogurt</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/google-charts/Scoops Ice Cream Parlour">Scoops Ice Cream Parlour</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/google-charts/Scoopy Doos Ice Cream">Scoopy Doos Ice Cream</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/google-charts/The Ice Cream Hut">The Ice Cream Hut</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/google-charts/Baskin-Robbins Ice Cream & Cake Store">Baskin-Robbins Ice Cream & Cake Store</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/google-charts/Sweet Tooth Scoops">Sweet Tooth Scoops</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/google-charts/Marble Slab Creamery">Marble Slab Creamery</a>
+              </li>
+            </ul>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </nav>  
+
+	<div style="margin: 10px 0 0 10px;width: 1000px">
+		<h3>Show Data on Google Charts using Python Flask</h3>
+		
+		<div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+	</div>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    -->
+</body>
+</html>
